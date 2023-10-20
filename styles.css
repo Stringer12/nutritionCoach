@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.btn.btn-outline-success{
+border-color: #03cf68;
+color: #03cf68;
+font-family: 'Montserrat', sans-serif;
+font-weight: bold;
+border:solid 1px;
+width:230px;
+height:40px;
+
+}
+
+.btn.btn-outline-success:hover{
+    background-color:#70E7C7;
+    color:white;
+    border-color: #03cf68;
+}
+.btn.btn-success:active{
+    background-color:#03cf68;
+    color:white;
+    border-color: #03cf68;
+}
+
+.btn.btn-outline-success:active{
+ 
+    color:#03cf68;
+ 
+}
+
+label{
+    padding-bottom: 10px;
+    font-size: max(20px,1vw);
+}
+.card{
+
+    max-width:400px;
+    min-width: auto;
+    align-self: center;
+    padding:20px;
+}
+
+.p1{
+
+    font-size:max(20px, 1vw);;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar {
+    width:auto;
+    background-color: #03cf68;
+    height:100px;
+}
+
+.svgGreen {
+    filter: invert(65%) sepia(37%) saturate(5825%) hue-rotate(109deg) brightness(100%) contrast(98%); 
+}
+
+.svgGreen2 {
+    filter: invert(65%) sepia(37%) saturate(5825%) hue-rotate(109deg) brightness(100%) contrast(98%); 
+}
+
+.svgGreen2:hover {
+    filter: invert(81%) sepia(80%) saturate(398%) hue-rotate(94deg) brightness(91%) contrast(83%); 
+}
+.svgWhite {
+    filter: invert(100%) sepia(100%) saturate(25%) hue-rotate(21deg) brightness(107%) contrast(105%); 
+}
+
+.svgRed {
+    filter: brightness(0) saturate(100%) invert(21%) sepia(82%) saturate(3065%) hue-rotate(351deg) brightness(93%) contrast(87%);
+}
+
+.svgGray {
+    filter: brightness(0) saturate(100%) invert(49%) sepia(13%) saturate(7%) hue-rotate(2deg) brightness(100%) contrast(92%);
+}
+
+.svgGray:hover {
+    filter: invert(65%) sepia(37%) saturate(5825%) hue-rotate(109deg) brightness(100%) contrast(98%); 
+}
+
+.theader{
+    text-align: center;
+    font-size: 18px;
+    padding:20px !important;
+}
+
+td {
+    text-align: center;
+    font-size: 18px;
+    padding:20px !important;
+
+}
+
+.highlight {
+    background-color: red;
+}
+.normal {
+    background-color: gray;
+}
+
+.secondBtn{
+    background-color:white;
+    color:#03cf68;
+    border:solid 1px #03cf68;
+    font-size:16px;
+    height:55px;
+    padding:15px;
+    border-radius: 8px;
+    font-weight:bold;
+    vertical-align: middle;
+}
+.secondBtn:hover {
+    background-color: #03cf68;
+    opacity: 0.7;
+    color:white;
+}
+
+.thirdBtn{
+    background-color:white ;
+    color:#03cf68;
+    font-size:16px;
+    border:solid 1px #03cf68;
+    height:50px;
+    width:240px;
+    padding:8px;
+    border-radius: 8px;
+    font-weight:bold;
+    vertical-align: middle;
+    
+}
+.thirdBtn:hover {
+    background:#03cf68;
+    opacity:0.7;
+    color:white;
+    
+}
+
+html {
+    height: 100vh;
+}
+body {
+    min-height: 100vh;
+  
+} 
+
+.myModal {
+
+    width:300px;
+    height:300px;
+    background-color: gainsboro;
+
+}
+
+
+.box{
+
+    display:flex;
+    justify-content: center;
+    width:400px;
+    height:400px;
+    border:#03cf68 solid 2px;   
+    border-radius: 10px;
+
+}
+
+.containerVert {
+
+    display:flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.containerHori {
+
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    top:30px;
+    align-items:center;
+    
+}
+
+.pageTitle {
+    color:#CDB03C;
+    font-weight: bold;
+    text-align: center;
+    margin-left:10px;
+}
+
+.circle {
+    background: white;
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.purple {
+    border: solid 1px #4b3ccd;
+}
+
+.gold {
+
+    border: solid 1px #CDB03C;
+}
+
+.blue {
+    border: solid 1px #36acf1;
+}
+
+.green {
+    border: solid 1px #03cf68;
+}
+
+.cancelBtn{
+background-color: white;
+width:180px;
+padding:10px;
+height:45px;
+border: solid 1px red;
+color:red;
+border-radius: 8px;
+font-weight:bold;
+vertical-align: middle;
+}
+
+
+.cancelBtn:hover {
+    background-color: red;
+    opacity: 0.7;
+    color:white;
+}
+
+.message {
+
+    color:#03cf68;
+    font-size: 20px;
+    font-weight: bold;
+}
