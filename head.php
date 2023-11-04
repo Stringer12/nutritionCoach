@@ -49,7 +49,8 @@ element.classList.replace("svgWhite", "svgGreen");
   <a style="font-size:18px; height:70px;" id="1" href="myRecipes.php" class="btn btn-outline-success"  aria-current="page">My Recipes</a>
   <a style="font-size:18px;" id="2"href="newRecipe.php" onmouseover="changeCol(this.id)" onmouseout="changeBack(this.id)" class="btn btn-outline-success" >New Recipe <img id="grn_2" class="svgGreen" style="float:right;margin-right:10px" width="30px" height="30px" src="images/circle-plus.svg" /></a>
   <a style="font-size:18px;" id="3"href="addFood.php" onmouseover="changeCol(this.id)" onmouseout="changeBack(this.id)" class="btn btn-outline-success" >Add Food <img id="grn_3"class="svgGreen" style="float:right;margin-right:10px" width="30px" height="30px" src="images/circle-plus.svg" /></a>
-  <a style="font-size:18px;" id="4" href= "login.php" onmouseover="changeCol(this.id)" onmouseout="changeBack(this.id)" class="btn btn-outline-success" data-toggle="modal" data-target="#logout">Logout <img id="grn_4"class="svgGreen" style="float:right;margin-right:10px" width="30px" height="30px" src="images/arrow-right-from-bracket.svg"/></a>
+  <a style="font-size:18px;" id="4"href="statistics.php" onmouseover="changeCol(this.id)" onmouseout="changeBack(this.id)" class="btn btn-outline-success" >My Stats <img id="grn_4"class="svgGreen" style="float:right;margin-right:10px" width="30px" height="30px" src="images/chart-column.svg" /></a>
+  <a style="font-size:18px;" id="5" href= "login.php" onmouseover="changeCol(this.id)" onmouseout="changeBack(this.id)" class="btn btn-outline-success" data-toggle="modal" data-target="#logout">Logout <img id="grn_5"class="svgGreen" style="float:right;margin-right:10px" width="30px" height="30px" src="images/arrow-right-from-bracket.svg"/></a>
 </div>
 
 <div class="container-fluid"> 

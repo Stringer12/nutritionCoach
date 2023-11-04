@@ -2,6 +2,9 @@
 
 include "head.php";
 
+
+$msg='';
+
 $id = $_GET['id'];
 
 $sql = "select * from recipes where recp_id = $id";
@@ -18,6 +21,45 @@ WHERE ri.recp_id = $id";
 $result = mysqli_query($con,$q);
 
 
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+  $servingsLogged=$_POST['servingsLogged'];
+
+  $sql="INSERT INTO `logged_recipe`(recp_id, date_logged, total_calories) VALUES (1, CURRENT_DATE, (SELECT calories_ps from recipes where recp_id = ".$id.")*".$servingsLogged." );";
+
+$result = mysqli_query($con,$sql);
+
+if(!$res) {
+  echo "something went wrong";
+} else {
+
+  $msg= "Logged Recipe!";
+  ?>
+  <script>
+      setTimeout(() => {
+          const box = document.getElementById('p1');
+
+          // 👇️ removes element from DOM
+          box.style.display = 'none';
+
+      }, 2500); // 👈️ time in milliseconds                    
+  </script>
+  <?php
+
+
+$sql = "select * from recipes where recp_id = $id";
+$res = mysqli_query($con,$sql);
+$row = mysqli_fetch_array($res);
+
+
+$q = "SELECT fi.Description as 'desc', ri.quantity as 'quantity' 
+FROM `recipes` as r
+join recipe_ingredients as ri on r.recp_id = ri.recp_id
+join food_items as fi on ri.foodID = fi.foodID
+WHERE ri.recp_id = $id";
+
+$result = mysqli_query($con,$q);
+}
+}
 
 ?>
 
@@ -27,16 +69,30 @@ $result = mysqli_query($con,$q);
   function activeTab() {
     var link = document.getElementById('1');
     link.outerHTML = '<a id="1" style="height:70px" href="myRecipes.php" class="btn btn-outline-success active" aria-current="page">My Recipes</a>';
-  };
-
+  }
 
   function openModal() {
     document.getElementById("exampleModal").style.display = "block";
   }
+
   function closeModal() {
     document.getElementById("exampleModal").style.display = "none";
   }
 
+  function logRecipe (id) {
+
+    var form =document.getElementById('logForm');
+    var command = document.getElementById('command');
+
+    command.value=id;
+
+    form.submit();
+
+  }
+
+  function openModal2() {
+    $('#logRecpModal').modal('toggle');
+  }
 
 </script>
 
@@ -56,44 +112,6 @@ $result = mysqli_query($con,$q);
 </div>
 </div>
 
-<!-- modal -->
-<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title" style="font-weight:bold;font-size:20px;margin-left:160px" id="exampleModalLabel">Food
-          Search</h5>
-        <button type="button" size=20 class="btn-close " data-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <form>
-          <div class="mb-3" style="margin-left:30px">
-            <label for="recipient-name" class="col-form-label">Ingredient:</label>
-            <input type="text" class="form-control" style="width:400px; padding:20px" name="food-search"
-              id="food-search">
-            <select class="form-control" style="display:none">
-              <option>1</option>
-            </select>
-          </div>
-          <div class="mb-3" style="margin-left:30px">
-            <label for="message-text" class="col-form-label">Quantity:</label>
-            <input type="number" style="width:400px;padding:20px" class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="button" class="secondBtn" style="width:200px">Add Food</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
 <div class="container-fluid" style="margin:0px;text-align:center; width:100%; border:solid 2px gainsboro; height:135px">
 
 
@@ -101,6 +119,9 @@ $result = mysqli_query($con,$q);
     <div class="col-md-9" style="margin-top:20px;margin-left:50px">
       <label for="recp_name" class="col-sm-3 col-form-label"
         style="color:#404040;font-size:18px;font-weight:bold"><?php echo $row['name']; ?></label>
+    </div>
+    <div class="col">
+      
     </div>
     <div class="col-md-9" style="margin-top:20px;margin-left:40px">
       <label for="servings" class="col-sm-3 col-form-label"
@@ -116,7 +137,7 @@ $result = mysqli_query($con,$q);
 </div>
 
   <div>
-    <a href='exportData.php?id=<?=$id?>'><button id="exportbtn" onclick=''class="thirdBtn" style="width:180px;height:45px;position:absolute; top:310px;right:100px" >Export
+    <a href='exportData.php?id=<?=$id?>'><button id="exportbtn" onclick=''class="thirdBtn" style="width:180px;height:45px;position:absolute; top:310px;right:120px;" >Export
     </button></a>
   </div>
 </div>
@@ -160,12 +181,53 @@ $result = mysqli_query($con,$q);
   <textarea readonly class="col-auto" style='padding-top:10px;height:150px;width:350px;margin-right:90px;margin-bottom:100px;' id=""
     placeholder=""> <?php echo $row['instructions']; ?></textarea>
 
+    <h1 class="p1" id='p1' style="color:#03cf68;font-size:30px;display:block;margin-bottom:10px;margin-left:30px"><?=$msg;?></h1>
+
+    <div class="text-center" style="margin-bottom:30px;margin-top:50px;position:relative; bottom:0px;left:25px">
+    <button id=<?= $id?> class='thirdBtn' type="button" onclick="openModal2()" style="height:50px;width:200px">LOG RECIPE</button>
+  </div>
+
+  <!-- log recipie modal -->
+<div class="modal" id="logRecpModal" tabindex="-1" aria-labelledby="logRecpModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#03cf68;">
+
+        <h4 class="modal-title" style="color:white;font-weight:bold;font-size:24px;margin-left:160px">Log Recipe</h4>
+        <button type="button" size=20 class="btn-close " data-dismiss="modal" aria-label="Close"></button>
+
+      </div>
+      <div class="modal-body" style="margin-left:40px;font-size:15px;">
+
+        <form id="logForm" action="" method="POST">
+          <input type="hidden" class="form-control" style="" name="command" id="command">
+
+          <div class="mb-3" style="margin-left:30px">
+            <div class="row">
+              <div class="col">
+                <label class="col-form-label" style="margin-top:30px">How many Servings?</label>
+
+                <input type="number" style="width:320px;padding:20px; margin-top:10px;margin-bottom:30px" class="form-control"
+                  id="servingsLogged" name="servingsLogged" placeholder="Enter the number of servings eaten..." />
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" onclick="logRecipe(<?=$id?>)" class="secondBtn"
+          style="height:50px;padding:5px;width:200px">Log</button>
+      </div>
+
+    </div>
+  </div>
 </div>
+<!-- /Create recipie modal -->
 
-
-
-
-
+<form id="submitForm">
+  <input type='hidden' id='command' name='command'>
+</form>
+</div>
 </body>
-
 </html>
