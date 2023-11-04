@@ -1,7 +1,7 @@
 <?php 
 $server = 'localhost';
 $user= 'root';
-$password= 'pass';
+$password= '';
 $dbname = 'nutritioncoach';
 
 $con = new mysqli($server,$user,$password,$dbname);
